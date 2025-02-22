@@ -9,7 +9,106 @@
 <!---
 TeachMastermindPats/TeachMastermindPats is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
---->
+--->```yaml
+name: Project Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  codeql-analysis:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+
+  dependabot-updates:
+    name: Dependabot Updates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Dependabot
+        uses: dependabot/dependabot-script@v1
+        with:
+          script: |
+            update script here
+
+  image-optimization:
+    name: Imgbot Optimization
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Imgbot
+        uses: imgbot/Imgbot@latest
+
+  accxbot:
+    name: ACCXBot Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run ACCXBot script
+        run: python accxbot_script.py
+
+  filter-by-keywords:
+    name: Filter by Keywords
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check commit message for keywords
+        run: |
+          git log -1 --pretty=%B | grep -E 'keyword1|keyword2'
+          if [ $? -ne 0 ]; then
+            echo "No matching keywords found in the latest commit message."
+            exit 1
+
+  filter-by-files:
+    name: Filter by Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for changes in specific files
+        run: |
+          git diff --name-only HEAD~1 HEAD | grep 'specific_file_or_directory'
+          if [ $? -ne 0 ]; then
+            echo "No relevant file changes detected."
+            exit 1
+```
 
 ```markdown
 # TeachMastermindPats
