@@ -7,7 +7,7 @@
 - ⚡ Fun fact: ...
 
 <!---
-TeachMastermindPats/TeachMastermindPats is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+TeachMastermindPats/AfricaCryptoChainx is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->```yaml
 name: Project Workflow
